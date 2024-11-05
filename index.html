@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+    <style>
+      body{
+  background-color: rgb(35, 34, 34);
+  color: #f5f5f5;
+  font-family: 'Lora', serif;
+  font-size: 30px;
+  padding-left: 50px;
+  font-weight: 900;
+
+}
+
+#mail{ background-color: rgba(0, 0, 0, 0.598);
+    color: #f5f5f5;
+    border: none;
+    height: 30px;
+
+}
+#mail:focus{
+   outline: 5px solid black;
+
+}
+input {
+  caret-color: rgb(101, 100, 100);
+  border-radius: 20px;
+  position: relative;
+  float: right;
+}
+
+.wrapper{
+    width: 550px;
+    margin: 0 auto;
+}
+#phone:focus{
+   outline: 5px solid black;
+
+}
+#phone{ background-color: rgba(0, 0, 0, 0.598);
+    color: #f5f5f5;
+    border: none;
+    height: 30px;
+
+}
+#password:focus{
+   outline: 5px solid black;
+
+}
+#password{ background-color: rgba(0, 0, 0, 0.598);
+    color: #f5f5f5;
+    border: none;
+    height: 30px;
+
+}
+#confirmpassword:focus{
+   outline: 5px solid black;
+
+}
+#confirmpassword{ background-color: rgba(0, 0, 0, 0.598);
+    color: #f5f5f5;
+    border: none;
+    height: 30px;
+
+}
+.formelement{
+    margin-bottom: 10px;
+}
+
+button{
+width: 130px;
+margin-left: 200px;
+border-radius: 20px;
+background-color: black;
+color: white;
+border: none;
+height: 50px;
+font-size: 18px;
+font-weight: 900;
+cursor: pointer;
+transition: transform 0.2s, background-color 0.1s;
+}
+button:active{
+    transform: scale(0.85);
+    background-color: rgb(43, 43, 43);
+}
+.error{
+    color: rgb(239, 103, 103);
+    font-size: 25px;
+    font-weight: 500;
+}
+.success{
+    color: rgb(10, 112, 14);
+}
+
+    </style>
+</head>
+<body>
+   <div class="wrapper">
+    <div class="formelement">
+     <!-- for in label helps to connect with id with mail -->
+     <label for="mail">Email</label> 
+     <input type="text" id="mail" name="Email">
+    </div>
+    <div class="formelement">
+     <label for="phone">Phone No. </label> 
+     <input type="text" id="phone" name="phone">
+    </div>
+
+    <div class="formelement">
+        <label for="password">Password </label> 
+        <input type="password" id="password" name="password">
+       </div>
+       <div class="formelement">
+        <label for="confirmpassword">Confirm-Password </label> 
+        <input type="confirmpassword" id="confirmpassword" name="confirmpassword">
+       </div>
+
+       <button type="button"> Submit Me</button>
+   </div>
+  <p class="error "></p>
+  <p class="success"></p>
+   <script>
+var errormessage="";
+var missingfeild="";
+
+    //regular expression
+    function isEmail(email){
+        var check=/^([a-z A-Z 0-9 _.+-])+\@(([a-z A-Z 0-9]))/ 
+        // console.log(email)
+        return check.test(email);
+   
+    }
+    
+
+    $("button").click(function(){
+
+        if($("#mail").val()==""){
+missingfeild+="<p>Email is Blank</p>"
+        }
+
+        if($("#phone").val()==""){
+missingfeild+="<p>Phone is Blank</p>"
+        }
+        if($("#password").val()==""){
+missingfeild+="<p>Password is Blank</p>"
+        }
+        if($("#confirmpassword").val()==""){
+missingfeild+="<p>Confirm Password is Blank</p>"
+        }
+
+     // grap user enter Email use .val()
+
+     if(isEmail($("#mail").val()) ==false){
+       errormessage +="<p>Email is Invalid</p>"
+     }
+
+     if($.isNumeric($("#phone").val()) ==false){
+       errormessage +="<p> Phone no. is Invalid</p>"
+     }
+     if($("#password").val() != $("#confirmpassword").val()){
+       errormessage +="<p>Password Does Not Match</p>"
+     }
+
+     if(errormessage == ""){
+$(".success").html("Successful Sign In")
+     }
+    else{
+        $(".error").html(errormessage + missingfeild)
+
+    }
+
+    })
+   </script>
+</body>
+</html>
